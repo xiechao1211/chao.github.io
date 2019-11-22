@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="Mc82LJcbDd87ZcH0HP6sw3_CAUfYTHGmA-K6c9qG9Jc">
+<meta name="google-site-verification" content="B6cs0Ll9qGV48z8kmMekSBRLDpUCBbvQJ4hu3XqhtkU">
+<meta name="baidu-site-verification" content="dIhGiIpnID">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端,前端开发,js,javascript,vue,react,electron">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="记录技术，分享技术">
+<meta name="keywords" content="前端,前端开发,js,javascript,vue,react,electron">
+<meta property="og:type" content="website">
+<meta property="og:title" content="谢超的技术博客">
+<meta property="og:url" content="https://www.tinnypea.com/index.html">
+<meta property="og:site_name" content="谢超的技术博客">
+<meta property="og:description" content="记录技术，分享技术">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="谢超的技术博客">
+<meta name="twitter:description" content="记录技术，分享技术">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.tinnypea.com/">
+
+
+
+
+
+  <title>谢超的技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a41b5d7b7593c6e14e7676c1b785c781";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">谢超的技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">主攻前端，略懂后端</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.tinnypea.com/2019/11/cache-configuration-for-vuespa-project-in-nginx.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaochao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢超的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/cache-configuration-for-vuespa-project-in-nginx.html" itemprop="url">nginx中对vue(spa)项目的缓存配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-22T17:28:31+08:00">
+                2019-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/11/cache-configuration-for-vuespa-project-in-nginx.html" class="leancloud_visitors" data-flag-title="nginx中对vue(spa)项目的缓存配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目前前端的项目基本上被vue、react、angular霸占了，构建打包也基本上都是基于webpack，3个不同框架其实都提供了一套比较完成的开发工具链，最典型的其实就是将构建完成的文件加上hash值，如a.js 在构建完成后会变成a.abad3333ss.js文件，这样在前端项目发布新版部署的时候，能让浏览器不缓存a.js文件。</p>
+<p>关于部署，目前前端基本上都是基于nginx进行独立部署的，方便快捷没有跨域问题，使用nginx部署就会有缓存问题，也就是浏览器访问你的域名之后，默认是会把所有静态文件缓存到本地的，针对这种情况，有2中解决方案：</p>
+<h4 id="nginx配置文件不缓存"><a href="#nginx配置文件不缓存" class="headerlink" title="nginx配置文件不缓存"></a>nginx配置文件不缓存</h4><p>不缓存，也就是在nginx的配置中，强制设置所有文件均不会在浏览器缓存，这样不管项目发版之后有没有对项目的静态文件的文件名设置hash值，(版本号)，浏览器始终会去服务器请求最新的文件，坏处就是加载速度会稍慢，尤其是在网络条件不理想的情况下，具体配置如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在nginx.conf文件中的location或者server中设置请求cache-control请求头</span></span><br><span class="line">add_header Cache-Control no-cache,no-store,must-revalidate;</span><br></pre></td></tr></table></figure></p>
+<h4 id="静态文件加hash，nginx配置不缓存html"><a href="#静态文件加hash，nginx配置不缓存html" class="headerlink" title="静态文件加hash，nginx配置不缓存html"></a>静态文件加hash，nginx配置不缓存html</h4><p>既然各开发框架构建的前端项目都对静态文件的文件名增加hash值，那么肯定要利用起来，但是直接使用会有问题。</p>
+<p>构建出的静态文件-index.html 未改名，其他静态文件名是改了，但是文件引用全部是在这个html文件中的，如果index.html文件也缓存了，那么他引用的对应的文件也不会发生变化！这时候需要针对html单独进行缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在对应的location中增加以下代码，即html后缀的文件名不会进行缓存</span></span><br><span class="line">location / &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$request_filename</span> ~* ^.*?.(html|htm)$)&#123;</span><br><span class="line">        add_header Cache-Control no-cache,no-store,must-revalidate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.tinnypea.com/2019/11/nginx-report-proxytemp-permission-denied-error-resolution.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaochao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢超的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/nginx-report-proxytemp-permission-denied-error-resolution.html" itemprop="url">nginx报proxy_temp Permission denied 错误解决</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-22T17:18:46+08:00">
+                2019-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/11/nginx-report-proxytemp-permission-denied-error-resolution.html" class="leancloud_visitors" data-flag-title="nginx报proxy_temp Permission denied 错误解决">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在使用nginx的时候，有时会发现报 proxy_temp Permission denied 错误,这时候nginx会报error信息,原因其实就是 proxy_temp 没有读取权限，有两种解决办法：</p>
+<ol>
+<li><p>将nginx启动用户改为有权限的用户(如 root)或者将proxy_temp授权给启动用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user root;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更改nginx的配置,将缓冲区调整大一点，以下几项需要同时调整配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">    #proxy缓存设置</span><br><span class="line">    proxy_buffer_size 10m;</span><br><span class="line">    proxy_buffers 4 10m;</span><br><span class="line">    proxy_busy_buffers_size 10m;</span><br><span class="line">    proxy_temp_file_write_size 10m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.tinnypea.com/2019/02/webpack-babel-generates-corresponding-polyfill-according-to-configuration-package.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaochao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢超的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/webpack-babel-generates-corresponding-polyfill-according-to-configuration-package.html" itemprop="url">webpack babel根据配置打包生成对应的polyfill</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-12T16:14:02+08:00">
+                2019-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/02/webpack-babel-generates-corresponding-polyfill-according-to-configuration-package.html" class="leancloud_visitors" data-flag-title="webpack babel根据配置打包生成对应的polyfill">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在使用webpack+babel的时候，经常会配到需要添加polyfill,根据搜索到的资料一般都是在入口文件引入polyfill,这样的话，打包出来的文件会比较大，不太适合移动端的项目，多番资料查找验证之后，可以对.babelrc文件做以下处理即可<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"presets"</span>: [</span><br><span class="line">        [</span><br><span class="line">            <span class="string">"@babel/preset-env"</span>,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"modules"</span>: <span class="literal">false</span>, <span class="comment">//设置ES6 模块转译的模块格式 默认是 commonjs</span></span><br><span class="line">                <span class="attr">"targets"</span>: &#123; <span class="comment">// 配支持的环境</span></span><br><span class="line">                    <span class="attr">"browsers"</span>: [<span class="string">"ie &gt;=10"</span>]</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">"useBuiltIns"</span>: <span class="string">"usage"</span>, <span class="comment">// 是否开启自动支持 polyfill</span></span><br><span class="line">                <span class="attr">"debug"</span>: <span class="literal">true</span> <span class="comment">// debug，编译的时候 console</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"plugins"</span>: [<span class="string">"@babel/transform-runtime"</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 其实就是对babel做配置，但是一般项目的starter里边很少有如此配置的，所以就给忽略了</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.tinnypea.com/2019/02/modular-development-based-on-es5based-prototype.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaochao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢超的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/modular-development-based-on-es5based-prototype.html" itemprop="url">基于ES5的prototype进行模块化开发</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-12T15:50:02+08:00">
+                2019-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/02/modular-development-based-on-es5based-prototype.html" class="leancloud_visitors" data-flag-title="基于ES5的prototype进行模块化开发">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目前前端的模块化开发/多人协作开发基本上分为以下几类：</p>
+<ul>
+<li>按功能划分不同的文件，最后进行组合</li>
+<li>按页面或者模块进行划分，多人编写不同的JS/HTML文件，最后组合<br>经常为了项目进度，会出现多人开发同一个页面的情况，这样的话，经常会发生代码冲突的现象，除非提前及其规划地约定好页面内的模块，</li>
+<li>其实还有一种以prototype进行模块划分的非常好的方式，prototype内部的变量可以进行隔离，个人在prototype内部进行各自的功能开发，也不会出现代码冲突的情况，对外暴露其他模块需要的接口即可，对多人协同开发非常友好。</li>
+</ul>
+<h4 id="页面结构开发"><a href="#页面结构开发" class="headerlink" title="页面结构开发"></a>页面结构开发</h4><p>首先编写好页面的基础html结构和基础js，主要是在js文件内进行模块隔离，参考如下代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如index页面</span></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="comment">// 首先定义一个index的ES5类，并且定义好该类的初始化方法及内部定义模块并对其进行实例化</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Index</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.CONST()</span><br><span class="line">    <span class="keyword">this</span>.INIT()</span><br><span class="line">&#125;</span><br><span class="line">Index.prototype.CONST = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 在这里定义页面内部的局部变量，并且不会污染外部环境，统一使用自定义的get/set方法进行存取</span></span><br><span class="line">    <span class="keyword">var</span> data = &#123;</span><br><span class="line">        val1: <span class="string">'123'</span>,</span><br><span class="line">        val2: <span class="string">'234'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.get = <span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data[key]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.set = <span class="function"><span class="keyword">function</span>(<span class="params">key,val</span>)</span>&#123;</span><br><span class="line">        data[key] = val</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Index.prototype.INIT = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> index = <span class="keyword">new</span> Index()</span><br></pre></td></tr></table></figure></p>
+<h4 id="编写页面的结构模块"><a href="#编写页面的结构模块" class="headerlink" title="编写页面的结构模块"></a>编写页面的结构模块</h4><p>在完成页面类的基础结构后，根据不同页面功能编写功能模块，比如页面内的查询参数可以当作独立模块，表格也可以当作独立模块，多人开发时，个人开发独立的模块即可，模块之间通过类内部的方法(接口)进行通信<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Index.prototype.SearchValues = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">var</span> queryParams = &#123;&#125;</span><br><span class="line">    <span class="comment">// 对外暴露获取参数的接口/方法，但不会暴露内部变量</span></span><br><span class="line">    self.getQueryParams = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> queryParams</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Index.prototype.TableModule = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">var</span> test = <span class="number">123</span></span><br><span class="line">    <span class="keyword">var</span> initTable = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(test)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 同样对外暴露 initTable 方法</span></span><br><span class="line">    self.renderTable = initTable</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 在定义好页面功能模块及需要初始化的方法之后，在INIT模块内进行如下处理</span></span><br><span class="line"></span><br><span class="line">Index.prototype.INIT = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//首先加载各功能模块</span></span><br><span class="line">    <span class="keyword">this</span>.SearchValues()</span><br><span class="line">    <span class="keyword">this</span>.TableModule()</span><br><span class="line">    <span class="comment">// 模块加载完成之后再初始化功能</span></span><br><span class="line">    <span class="keyword">this</span>.renderTable()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.tinnypea.com/2018/10/use-middleware-servermiddleware-in-the-nuxt-express-project.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaochao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢超的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/use-middleware-servermiddleware-in-the-nuxt-express-project.html" itemprop="url">nuxt express项目中使用中间件(serverMiddleware)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-31T11:50:56+08:00">
+                2018-10-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/use-middleware-servermiddleware-in-the-nuxt-express-project.html" class="leancloud_visitors" data-flag-title="nuxt express项目中使用中间件(serverMiddleware)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Nuxt，作为一款优秀的基于Vue的服务端渲染（SSR）框架，既可以使用他的服务器渲染模式，也可以打包成静态页面，甚至也可以将其打包未SPA（单页面应用）</p>
+</blockquote>
+<p>使用Nuxt官方模板初始化项目的时候，可选择不同的基于Nodejs的服务端框架，我选用的是Express，其他框架也类似。</p>
+<p>Express中有许多的官方或者第三方的中间件，其实也就是渲染页面之前需要做的操作,比如日志记录，cookie解析，url解析，权限认证等等，在Nuxt中，中间件分两种：</p>
+<ul>
+<li>基于Nodejs或者Express或者自行开发的服务端中间件（serverMiddleware）</li>
+<li>基于Vue路由，也就是Nuxt渲染页面之前的中间件，可以看作是Vue Router的钩子</li>
+</ul>
+<h4 id="服务端中间件的开发使用"><a href="#服务端中间件的开发使用" class="headerlink" title="服务端中间件的开发使用"></a>服务端中间件的开发使用</h4><p>默认在 /server/index.js文件中，启动了一个express服务，在start函数中使用了nuxt作为express的中间件，我们自行开发或者使用的中间件有两种方式：</p>
+<ol>
+<li><p>在nuxt中间件使用之前调用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 需要在nuxt中间件调用前使用，否则页面会在nuxt中间件中渲染出来</span></span><br><span class="line">app.use(<span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.headers)</span><br><span class="line">&#125;)</span><br><span class="line">app.use(nuxt.render)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用nuxt的serverMiddleware</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.在项目根目录下建一个serverMiddleware的文件夹，再建立 一个auth.js的文件</span></span><br><span class="line"><span class="comment">//auth.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// console.log(req.headers)</span></span><br><span class="line">  <span class="comment">// res.redirect(301,'https://www.baidu.com')</span></span><br><span class="line">  <span class="comment">// res.status(200).send('&lt;p&gt;12355&lt;/p&gt;')</span></span><br><span class="line">  <span class="comment">// 在该中间件中，你甚至可以做渲染拦截，直接send你自定义的数据</span></span><br><span class="line">  next()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.在nuxt的配置文件中（nuxt.config.js）调用该中间件</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    serverMiddleware: [</span><br><span class="line">    <span class="string">'@/serverMiddleware/auth'</span></span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或者可以给路径参数，跟express中是一样的</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    serverMiddleware: [</span><br><span class="line">    &#123;<span class="attr">path</span>:<span class="string">'/api'</span>, <span class="attr">handler</span>:<span class="string">'@/serverMiddleware/auth'</span>&#125;</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.tinnypea.com/2018/09/implement-a-simple-mvvm-framework-based-on-the-understanding-of-vue.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaochao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢超的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/implement-a-simple-mvvm-framework-based-on-the-understanding-of-vue.html" itemprop="url">基于vue的理解实现一个简单的mvvm框架</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-30T11:38:22+08:00">
+                2018-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/implement-a-simple-mvvm-framework-based-on-the-understanding-of-vue.html" class="leancloud_visitors" data-flag-title="基于vue的理解实现一个简单的mvvm框架">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>在写了很多的vue项目之后，就比较想去了解vue的实现方式，因为现在的前端框架主要是Vue/React/Angular，除了React之外都可以实现数据的双向绑定，React也可以稍微做多一点，自己实现，关键问题在是数据与页面(模板)的绑定、同步数据更新/页面更新。<br>类vue的mvvm框架叫做 模板(model)-视图(view)-视图模板(viewmodel)，核心就是将view耦合model，并且在model更新的时候操作view中的dom变化</p>
+</blockquote>
+<h4 id="mvvm框架流程解析"><a href="#mvvm框架流程解析" class="headerlink" title="mvvm框架流程解析"></a>mvvm框架流程解析</h4><p>本文章的代码参考了<a href="https://github.com/DMQ/mvvm" target="_blank" rel="noopener">DMQ/mvvm</a><br>vue采用了数据劫持的方式(observer)来进行视图-模板的绑定更新，<br><img src="/2018/09/implement-a-simple-mvvm-framework-based-on-the-understanding-of-vue/mvvm.png" title="mvvm"><br>图片来自<a href="https://github.com/DMQ/mvvm" target="_blank" rel="noopener">DMQ/mvvm</a><br>流程：</p>
+<ul>
+<li>observer：数据监听，由observer对数据模型使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener">Object.defineProperty</a>对数据的get、set方法进行劫持，设置数据时通知订阅者(watcher)更新，获取数据时绑定订阅者，</li>
+<li>compile：模板/指令编译器，将html文件中的指令(v-model,@clickj,&#123;&#123;&#125;&#125;)等特定规则的字符串解析成mvvm中的数据，并且将其添加为一个观察者，同时执行具体的dom更新、事件绑定等</li>
+<li>watcher：订阅者，模板/数据观察者，一旦观察到了数据的变动，则进行数据更新</li>
+<li>dep：消息订阅器,连接compile与watcher，在数据劫持中绑定watcher</li>
+</ul>
+<h4 id="mvvm框架页面示例"><a href="#mvvm框架页面示例" class="headerlink" title="mvvm框架页面示例"></a>mvvm框架页面示例</h4><p>以一个简单的页面示范mvvm框架的实现<br>实现的效果：<br><img src="/2018/09/implement-a-simple-mvvm-framework-based-on-the-understanding-of-vue/demo.gif" title="demo"><br>html文件<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>webpack4 demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span>  <span class="attr">v-model</span>=<span class="string">"str"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"color:red"</span>&gt;</span>&#123;&#123;str&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;input type="text" v-model="child.childData"&gt; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"color: blue"</span> <span class="attr">v-text</span>=<span class="string">"child.childData"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"color: blue"</span> <span class="attr">v-text</span>=<span class="string">"text"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &#123;&#123;str&#125;&#125; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"清除"</span>  @<span class="attr">click</span>=<span class="string">"clear"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"设置子对象"</span> @<span class="attr">click</span>=<span class="string">"setChild"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>js文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Mvvm <span class="keyword">from</span> <span class="string">'./mvvm'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> mv = <span class="keyword">new</span> Mvvm(&#123;</span><br><span class="line">    el: <span class="string">"#app"</span>,</span><br><span class="line">    data: <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            str : <span class="string">'我是测试'</span>,</span><br><span class="line">            someStr: <span class="string">'别的内容'</span>,</span><br><span class="line">            child: &#123;</span><br><span class="line">                childData:<span class="string">'我是子对象'</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            text: <span class="string">'我是text'</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        setChild()&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'子对象的事件绑定'</span>)</span><br><span class="line">            <span class="keyword">this</span>.child.childData = <span class="built_in">Math</span>.round((<span class="built_in">Math</span>.random() * <span class="number">5</span> * <span class="number">100</span>))/<span class="number">100</span></span><br><span class="line">        &#125;,</span><br><span class="line">        clear()&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'绑定事件成功'</span>)</span><br><span class="line">            <span class="keyword">this</span>.str = <span class="string">''</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/implement-a-simple-mvvm-framework-based-on-the-understanding-of-vue.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.tinnypea.com/2018/09/the-usage-and-difference-of-call-apply-in-js.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaochao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢超的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/the-usage-and-difference-of-call-apply-in-js.html" itemprop="url">js中call与apply的用法及区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-30T11:30:35+08:00">
+                2018-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/the-usage-and-difference-of-call-apply-in-js.html" class="leancloud_visitors" data-flag-title="js中call与apply的用法及区别">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在学习mvvm模式的代码编写过程中，用到了js中的call方法，之前在其他的项目代码中也经常会见到call与apply的用法，看了一番资料，用最简单的代码来进行理解<br>其实call与apply的作用一样，只是传递参数的方式不一样，都是待用某一个函数方法，但是如果这个函数里边有用到this或者跟作用域有关的东西，我们就可以通过call或者apply传入不同的作用域进去(this)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    name: <span class="string">'xiechao'</span>,</span><br><span class="line">    age: <span class="number">28</span>,</span><br><span class="line">    getData: <span class="function"><span class="keyword">function</span>(<span class="params">txt</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 默认的this是当前对象 obj</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(txt)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> data = &#123;<span class="attr">name</span>:<span class="string">'jordan'</span>, <span class="attr">age</span>: <span class="number">26</span>&#125;</span><br><span class="line">obj.getData(<span class="string">'原参数'</span>)</span><br><span class="line"><span class="comment">// 输出&#123;name: "xiechao", age: 28, getData: ƒ&#125;</span></span><br><span class="line"><span class="comment">// 输出 原参数</span></span><br><span class="line"><span class="comment">// 传入另外一个obj作为this，也就是作用于</span></span><br><span class="line"><span class="comment">// call 的参数用函数参数的方式</span></span><br><span class="line"></span><br><span class="line">obj.getData.call(data,<span class="string">'call参数'</span>)</span><br><span class="line"><span class="comment">// 输出 &#123;name: "jordan", age: 26&#125;</span></span><br><span class="line"><span class="comment">// 输出 call参数</span></span><br><span class="line"><span class="comment">// apply 的参数方式用数组形式</span></span><br><span class="line"></span><br><span class="line">obj.getData.apply(data,[<span class="string">'apply参数'</span>])</span><br><span class="line"><span class="comment">// 输出 &#123;name: "jordan", age: 26&#125;</span></span><br><span class="line"><span class="comment">// 输出 apply参数</span></span><br></pre></td></tr></table></figure></p>
+<p>典型引用<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> number = [<span class="number">1</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">10</span>]</span><br><span class="line"><span class="comment">// 以数组格式传入参数</span></span><br><span class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,number)</span><br><span class="line"><span class="built_in">Math</span>.min.apply(<span class="literal">null</span>,number)</span><br><span class="line"><span class="comment">// ES5的继承</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// call的应用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 在子类的构造函数中调用一次父类的构造，获得父类的属性</span></span><br><span class="line">    Person.call(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 子类原型继承父类的属性及方法</span></span><br><span class="line">Student.prototype = <span class="keyword">new</span> Person()</span><br><span class="line">Student.prototype.constructor = Student</span><br></pre></td></tr></table></figure></p>
+<p>在js中，call与apply的还是比较常见的，现在流行的vue，经常会用到this这个参数，但是某些时候你需要传入不同的this指向。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.tinnypea.com/2018/09/demo-configuration-based-on-webpack4-production-project-development-including-babel-less-and-other-common-plugins.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaochao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢超的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/demo-configuration-based-on-webpack4-production-project-development-including-babel-less-and-other-common-plugins.html" itemprop="url">基于webpack4制作项目开发的demo配置(含babel、less等常用开发插件)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T17:01:56+08:00">
+                2018-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/demo-configuration-based-on-webpack4-production-project-development-including-babel-less-and-other-common-plugins.html" class="leancloud_visitors" data-flag-title="基于webpack4制作项目开发的demo配置(含babel、less等常用开发插件)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>现在的前端开发基本上都是基于vue或者react的开发，而且大部分都是基于别人已经写好的基础全家桶，已经配置好了webpack、less/sass、babel等等其他插件，但是某些时候需要自己更改webpack配置的话，总避免不了去查issue，有些时候呢，比较简单的页面，又不想用vue/react来写，但是需要用到webpack的打包(可以使用es6、自动打包等等很爽的特性)，在写这个demo的时候顺便温习了以下webpack的使用。</p>
+<h4 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h4><p>新建文件夹 webpack4-demo，然后用npm命令初始化<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir webpack4-demo</span><br><span class="line"><span class="built_in">cd</span> webpack4-demo</span><br><span class="line">npm init</span><br><span class="line"><span class="comment"># 之后输入一些项目信息</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="项目开发依赖安装"><a href="#项目开发依赖安装" class="headerlink" title="项目开发依赖安装"></a>项目开发依赖安装</h4><p>在构建这个项目的时候需要一些必要和其他辅助类的开发依赖包，比如postcss(可以import或者@import引入css))、autoprefixer(css自动添加浏览器兼容)、babel(es6代码转译，自动天机爱polyfill)、less、uglifyjs(混淆压缩js)，在package.json的devDependencies下添加这些依赖。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">"devDependencies": &#123;</span><br><span class="line">  "@babel/core": "^7.1.0",</span><br><span class="line">  "@babel/plugin-transform-runtime": "^7.1.0",</span><br><span class="line">  "@babel/preset-env": "^7.1.0",</span><br><span class="line">  "@babel/runtime": "^7.0.0",</span><br><span class="line">  "autoprefixer": "^9.1.5",</span><br><span class="line">  "babel-loader": "^8.0.2",</span><br><span class="line">  "clean-webpack-plugin": "^0.1.19",</span><br><span class="line">  "css-loader": "^1.0.0",</span><br><span class="line">  "html-webpack-plugin": "^3.2.0",</span><br><span class="line">  "less": "^3.8.1",</span><br><span class="line">  "less-loader": "^4.1.0",</span><br><span class="line">  "postcss-import": "^12.0.0",</span><br><span class="line">  "postcss-loader": "^3.0.0",</span><br><span class="line">  "style-loader": "^0.23.0",</span><br><span class="line">  "uglifyjs-webpack-plugin": "^2.0.1",</span><br><span class="line">  "webpack": "^4.20.2",</span><br><span class="line">  "webpack-cli": "^3.1.1",</span><br><span class="line">  "webpack-dev-server": "^3.1.9",</span><br><span class="line">  "webpack-merge": "^4.1.4"</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<h4 id="项目文件结构设置"><a href="#项目文件结构设置" class="headerlink" title="项目文件结构设置"></a>项目文件结构设置</h4><p>在webpack4-demo项目中创建如下的目录结构<br><img src="/images/webpack4/project-structure.png" class><br>各配置文件及路径说明：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">config/ <span class="comment"># webpack配置文件目录</span></span><br><span class="line">config/webpack.base.config.js <span class="comment"># webpack通用/基础配置</span></span><br><span class="line">config/webpack.dev.config.js <span class="comment"># webpack开发环境下的配置</span></span><br><span class="line">config/webpack.prod.config.js <span class="comment"># webpack 生产环境的配置</span></span><br><span class="line">dist/ <span class="comment"># webpack打包文件的目录</span></span><br><span class="line">src/ <span class="comment"># 源码目录</span></span><br><span class="line">src/main.js <span class="comment"># 入口文件，可自行定义文件名，与webpack中的entry处的配置一致</span></span><br><span class="line">.babelrc <span class="comment"># babel的配置</span></span><br><span class="line">.editorconfig <span class="comment"># 编辑器的配置</span></span><br><span class="line">.gitignore <span class="comment"># git忽略文件</span></span><br><span class="line">.postcssrc.js <span class="comment"># postcss配置插件，如 post-import、autoprefixer等插件</span></span><br><span class="line">.index.html <span class="comment">#html文件结构</span></span><br></pre></td></tr></table></figure></p>
+<p>package.json是npm项目依赖管理，在文件的底部需要添加如下的autoprefixer的配置<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"browserslist": [</span><br><span class="line">  "&gt; 1%",</span><br><span class="line">  "last 2 versions",</span><br><span class="line">  <span class="string">"not ie &lt;= 8"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/demo-configuration-based-on-webpack4-production-project-development-including-babel-less-and-other-common-plugins.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.tinnypea.com/2018/09/develop-google-crawler-with-electorn.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaochao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢超的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/develop-google-crawler-with-electorn.html" itemprop="url">使用electorn开发google爬虫</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-20T18:10:27+08:00">
+                2018-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/develop-google-crawler-with-electorn.html" class="leancloud_visitors" data-flag-title="使用electorn开发google爬虫">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="electron介绍"><a href="#electron介绍" class="headerlink" title="electron介绍"></a>electron介绍</h4><p>最近接触到 <a href="https://github.com/electron/electron" target="_blank" rel="noopener">electron</a> 的开发，elctron基于NodeJs以及Chromium(可以看作是一个完整的chrome浏览器)，这样就可以在nodejs环境下，开发html界面，并且通过electron提供的api使用本地计算机的资源，最后打包成一个应用程序，包括windows、linux、macos，三个平台兼容的应用程序，因为都是基于nodejs和Chromium，而他们包括electron的兼容都已经帮你做好了，直接用js写代码跑起来即可，最简单就是将一个网页（包含业务操作）打包成软件包。</p>
+<h4 id="爬虫工具nightmare介绍"><a href="#爬虫工具nightmare介绍" class="headerlink" title="爬虫工具nightmare介绍"></a>爬虫工具nightmare介绍</h4><p><a href="https://github.com/segmentio/nightmare" target="_blank" rel="noopener">nightmare</a> 是基于electron开源出来的一个代码测试工具，也就是说模拟浏览器操作来测试你的代码，既然nightmare可以模拟浏览器操作，就突然想到是否能用它来模拟浏览器正常的浏览爬取数据，并且不需要研究协议、headers、cookie、ip等等，这些都不需要了，因为现在这就是一个普通的浏览器，当然频率过高还是会有一定的限制，经过一番搜索，nightmare本身并部支持在electron下再运行，但是！<br>有人fork了nightmare的源码，改出了一个可以在electron下运行的nightmare——<a href="https://github.com/Timer/nightmare" target="_blank" rel="noopener">eramthgin</a> ，也就是说我们可以用js开发出一个带界面操作的爬虫软件！<br>理论上你能正常通过浏览器浏览的网站，他的内容你都可以通过nightmare进行获取，比如google，只要你的电脑可以正常访问就没有问题，electron默认就是chrome浏览器，默认代理就是使用的你的电脑设置的代理。</p>
+<h4 id="项目结构初始化"><a href="#项目结构初始化" class="headerlink" title="项目结构初始化"></a>项目结构初始化</h4><ol>
+<li>初始化项目<br>electron项目基于<a href="https://github.com/SimulatedGREG/electron-vue" target="_blank" rel="noopener">electron-vue</a> 的vue模板进行初始化，基本上帮你配好了熟悉的vue开发环境。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装vue-cli 并初始化模板</span></span><br><span class="line">npm install -g vue-cli</span><br><span class="line"><span class="comment"># 初始化项目的时候我没选 eslint，暂时跟我的vscode兼容没设置好</span></span><br><span class="line">vue init simulatedgreg/electron-vue ele-crawler</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>package.json 修改，因为taobao没有2.0.10的镜像<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">devDependencies:&#123;</span><br><span class="line">    <span class="string">"electron"</span>: <span class="string">"^2.0.2"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 修改为</span></span><br><span class="line">devDependencies:&#123;</span><br><span class="line">    <span class="string">"electron"</span>: <span class="string">"2.0.9"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖运行</span></span><br><span class="line"><span class="built_in">cd</span> ele-crawler</span><br><span class="line"><span class="comment"># yarn安装比npm更快，设置淘宝镜像</span></span><br><span class="line">yarn config <span class="built_in">set</span> sass-binary-site http://npm.taobao.org/mirrors/node-sass</span><br><span class="line">yarn config <span class="built_in">set</span> ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron</span><br><span class="line">yarn config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line"><span class="comment"># 安装如果报错的话，删掉node_modules文件夹，执行上面操作再安装，可解决99%的安装依赖报错问题</span></span><br><span class="line">yarn</span><br><span class="line">yarn run dev</span><br></pre></td></tr></table></figure>
+<p>现在electron-vue项目就跑起来了，系统会自动打开浏览器demo窗口。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/develop-google-crawler-with-electorn.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </p></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.tinnypea.com/2018/09/build-an-independent-hexo-personal-blog-on-amazon-aws-server.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaochao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢超的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/build-an-independent-hexo-personal-blog-on-amazon-aws-server.html" itemprop="url">亚马逊AWS服务器上搭建独立的Hexo个人博客</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-19T18:59:14+08:00">
+                2018-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/build-an-independent-hexo-personal-blog-on-amazon-aws-server.html" class="leancloud_visitors" data-flag-title="亚马逊AWS服务器上搭建独立的Hexo个人博客">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近使用Hexo在Github上部署了个人博客,<a href="https://xiechao1211.github.io" target="_blank" rel="noopener">个人博客地址</a>，使用Hexo部署很方便，写作用markdown语法，本地html全站静态化构建，一条命令直接部署到github上，相当方便，但是有1个问题，就是百度无法收录 Github Pages网站的内容，因为Github把百度爬虫给屏蔽了，正好手上有1个aws服务器，就想着把博客部署到aws也不错，反正一年的免费，其他的云主机（阿里云、腾讯云）都类似，只要是一台独立的主机（VPS即可），那么开始吧！</p>
+<h4 id="hexo本地部署"><a href="#hexo本地部署" class="headerlink" title="hexo本地部署"></a>hexo本地部署</h4><p>不管怎么样，先在本地跑起来再说</p>
+<h5 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h5><p>本地需要有 node 环境，全局安装 hexo-cli<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-cli g</span><br></pre></td></tr></table></figure></p>
+<h5 id="hexo初始化项目"><a href="#hexo初始化项目" class="headerlink" title="hexo初始化项目"></a>hexo初始化项目</h5><p>假如需要在D盘新建一个 blog 项目<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> d</span><br><span class="line"><span class="comment"># 初始化hexo项目</span></span><br><span class="line">hexo init blog</span><br><span class="line"><span class="comment"># 安装npm依赖</span></span><br><span class="line">npm i</span><br><span class="line"><span class="comment"># 启动hexo,hexo在初始化的时候会自动新建一篇 hello hexo的md文档，在/source/_posts 目录下</span></span><br><span class="line">hexo s</span><br><span class="line"><span class="comment"># 或者以debug模式启动，文章修改后hexo自动重新编译</span></span><br><span class="line">hexo s --debug</span><br></pre></td></tr></table></figure></p>
+<p>其他hexo的相关配置自行上官网查看即可，不难 <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">hexo文档</a><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/build-an-independent-hexo-personal-blog-on-amazon-aws-server.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </p></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.png" alt="xiaochao">
+            
+              <p class="site-author-name" itemprop="name">xiaochao</p>
+              <p class="site-description motion-element" itemprop="description">记录技术，分享技术</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xiechao1211" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaochao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UWbldACjFunD67G0OA0yoDiq-gzGzoHsz", "IBI6kLKxLh88Ga2QbAjGBt8w");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

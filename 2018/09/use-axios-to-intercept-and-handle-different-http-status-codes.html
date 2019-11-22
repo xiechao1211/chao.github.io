@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="Mc82LJcbDd87ZcH0HP6sw3_CAUfYTHGmA-K6c9qG9Jc">
+<meta name="google-site-verification" content="B6cs0Ll9qGV48z8kmMekSBRLDpUCBbvQJ4hu3XqhtkU">
+<meta name="baidu-site-verification" content="dIhGiIpnID">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react,axios,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在react和vue都一般都会使用一个全局的request方法进行http请求在该方法中需要对200之外的状态码进行单独处理  参考ant pro项目中代码 改写的axios配置  状态码设置123456789101112131415161718192021222324252627// axiosSetting.jsimport axios from &apos;axios&apos;import &amp;#123; me">
+<meta name="keywords" content="react,axios">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react中使用axios拦截并处理不同http状态码">
+<meta property="og:url" content="https://www.tinnypea.com/2018/09/use-axios-to-intercept-and-handle-different-http-status-codes.html">
+<meta property="og:site_name" content="谢超的技术博客">
+<meta property="og:description" content="在react和vue都一般都会使用一个全局的request方法进行http请求在该方法中需要对200之外的状态码进行单独处理  参考ant pro项目中代码 改写的axios配置  状态码设置123456789101112131415161718192021222324252627// axiosSetting.jsimport axios from &apos;axios&apos;import &amp;#123; me">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-20T06:42:28.778Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react中使用axios拦截并处理不同http状态码">
+<meta name="twitter:description" content="在react和vue都一般都会使用一个全局的request方法进行http请求在该方法中需要对200之外的状态码进行单独处理  参考ant pro项目中代码 改写的axios配置  状态码设置123456789101112131415161718192021222324252627// axiosSetting.jsimport axios from &apos;axios&apos;import &amp;#123; me">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.tinnypea.com/2018/09/use-axios-to-intercept-and-handle-different-http-status-codes.html">
+
+
+
+
+
+  <title>react中使用axios拦截并处理不同http状态码 | 谢超的技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a41b5d7b7593c6e14e7676c1b785c781";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">谢超的技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">主攻前端，略懂后端</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.tinnypea.com/2018/09/use-axios-to-intercept-and-handle-different-http-status-codes.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaochao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢超的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react中使用axios拦截并处理不同http状态码</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-19T11:38:45+08:00">
+                2018-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/use-axios-to-intercept-and-handle-different-http-status-codes.html" class="leancloud_visitors" data-flag-title="react中使用axios拦截并处理不同http状态码">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在react和vue都一般都会使用一个全局的request方法进行http请求<br>在该方法中需要对200之外的状态码进行单独处理</p>
+<blockquote>
+<p>参考ant pro项目中代码 改写的axios配置</p>
+</blockquote>
+<h4 id="状态码设置"><a href="#状态码设置" class="headerlink" title="状态码设置"></a>状态码设置</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// axiosSetting.js</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">import</span> &#123; message &#125; <span class="keyword">from</span> <span class="string">'antd'</span></span><br><span class="line"><span class="keyword">import</span> &#123; routerRedux&#125; <span class="keyword">from</span> <span class="string">'dva/router'</span></span><br><span class="line"><span class="keyword">import</span> &#123; getToken &#125; <span class="keyword">from</span> <span class="string">'./auth'</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'../index'</span></span><br><span class="line"></span><br><span class="line">axios.defaults.withCredentials = <span class="literal">true</span></span><br><span class="line">axios.defaults.timeout = <span class="number">10000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> codeMessage = &#123;</span><br><span class="line">  <span class="number">200</span>: <span class="string">'服务器成功返回请求的数据。'</span>,</span><br><span class="line">  <span class="number">201</span>: <span class="string">'新建或修改数据成功。'</span>,</span><br><span class="line">  <span class="number">202</span>: <span class="string">'一个请求已经进入后台排队（异步任务）。'</span>,</span><br><span class="line">  <span class="number">204</span>: <span class="string">'删除数据成功。'</span>,</span><br><span class="line">  <span class="number">400</span>: <span class="string">'发出的请求有错误，服务器没有进行新建或修改数据的操作。'</span>,</span><br><span class="line">  <span class="number">401</span>: <span class="string">'用户没有权限（令牌、用户名、密码错误）。'</span>,</span><br><span class="line">  <span class="number">403</span>: <span class="string">'用户得到授权，但是访问是被禁止的。'</span>,</span><br><span class="line">  <span class="number">404</span>: <span class="string">'发出的请求针对的是不存在的记录，服务器没有进行操作。'</span>,</span><br><span class="line">  <span class="number">406</span>: <span class="string">'请求的格式不可得。'</span>,</span><br><span class="line">  <span class="number">410</span>: <span class="string">'请求的资源被永久删除，且不会再得到的。'</span>,</span><br><span class="line">  <span class="number">422</span>: <span class="string">'当创建一个对象时，发生一个验证错误。'</span>,</span><br><span class="line">  <span class="number">500</span>: <span class="string">'服务器发生错误，请检查服务器。'</span>,</span><br><span class="line">  <span class="number">502</span>: <span class="string">'网关错误。'</span>,</span><br><span class="line">  <span class="number">503</span>: <span class="string">'服务不可用，服务器暂时过载或维护。'</span>,</span><br><span class="line">  <span class="number">504</span>: <span class="string">'网关超时。'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="axios拦截"><a href="#axios拦截" class="headerlink" title="axios拦截"></a>axios拦截</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// axiosSetting.js</span></span><br><span class="line"><span class="comment">// request拦截器</span></span><br><span class="line">axios.interceptors.request.use(</span><br><span class="line">    config =&gt; &#123;</span><br><span class="line">        <span class="comment">// Do something before request is sent</span></span><br><span class="line">        <span class="keyword">const</span> token = getToken()</span><br><span class="line">        <span class="comment">// console.log(window.location.href.indexOf('/user/login') &gt; -1)</span></span><br><span class="line">        <span class="keyword">if</span>(config.url.indexOf(<span class="string">'/auth/oauth/token'</span>) &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            config.headers.Authorization = <span class="string">'Basic dnVlOnZ1ZQ=='</span> <span class="comment">// 增加客户端认证</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            config.headers.Authorization = token <span class="comment">// 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> &#123;url&#125; = config</span><br><span class="line">        <span class="keyword">if</span>(<span class="regexp">/^\/api\//</span>.test(url) &amp;&amp; !token &amp;&amp; !<span class="built_in">window</span>.location.href.indexOf(<span class="string">'user'</span>) &gt; <span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">const</span> &#123; dispatch &#125; = store</span><br><span class="line">            dispatch(routerRedux.replace(<span class="string">'/user/login'</span>)) <span class="comment">// 跳转到登录页</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> config</span><br><span class="line">    &#125;,</span><br><span class="line">    error =&gt; &#123;</span><br><span class="line">        <span class="comment">// Do something with request error</span></span><br><span class="line">        <span class="built_in">console</span>.log(error) <span class="comment">// for debug</span></span><br><span class="line">        <span class="built_in">Promise</span>.reject(error)</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment">// respone拦截器</span></span><br><span class="line">axios.interceptors.response.use(</span><br><span class="line">    response =&gt; &#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 下面的注释为通过response自定义code来标示请求状态，当code返回如下情况为权限有问题，登出并返回到登录页</span></span><br><span class="line"><span class="comment">         * 如通过xmlhttprequest 状态码标识 逻辑可写在下面error中</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">const</span> res = response.data</span><br><span class="line">        <span class="comment">// if (response.status === 401 || res.status === 40101) &#123;</span></span><br><span class="line">        <span class="comment">//   MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', &#123;</span></span><br><span class="line">        <span class="comment">//     confirmButtonText: '重新登录',</span></span><br><span class="line">        <span class="comment">//     cancelButtonText: '取消',</span></span><br><span class="line">        <span class="comment">//     type: 'warning'</span></span><br><span class="line">        <span class="comment">//   &#125;).then(() =&gt; &#123;</span></span><br><span class="line">        <span class="comment">//     store.dispatch('LogOut').then(() =&gt; &#123;</span></span><br><span class="line">        <span class="comment">//       location.reload() // 为了重新实例化vue-router对象 避免bug</span></span><br><span class="line">        <span class="comment">//     &#125;)</span></span><br><span class="line">        <span class="comment">//   &#125;)</span></span><br><span class="line">        <span class="comment">//   return Promise.reject('error')</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// if (res.status === 30101) &#123;</span></span><br><span class="line">        <span class="comment">//   Message(&#123;</span></span><br><span class="line">        <span class="comment">//     message: res.message,</span></span><br><span class="line">        <span class="comment">//     type: 'error',</span></span><br><span class="line">        <span class="comment">//     duration: 5 * 1000</span></span><br><span class="line">        <span class="comment">//   &#125;)</span></span><br><span class="line">        <span class="comment">//   return Promise.reject('error')</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// if (res.status === 40301) &#123;</span></span><br><span class="line">        <span class="comment">//   Message(&#123;</span></span><br><span class="line">        <span class="comment">//     message: '当前用户无相关操作权限！',</span></span><br><span class="line">        <span class="comment">//     type: 'error',</span></span><br><span class="line">        <span class="comment">//     duration: 5 * 1000</span></span><br><span class="line">        <span class="comment">//   &#125;)</span></span><br><span class="line">        <span class="comment">//   return Promise.reject('error')</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="keyword">if</span> (response.status !== <span class="number">200</span> &amp;&amp; res.status !== <span class="number">200</span>) &#123;</span><br><span class="line">            message.error(response.data.message)</span><br><span class="line">            <span class="comment">// notification.error(&#123;</span></span><br><span class="line">            <span class="comment">//     message: res.status,</span></span><br><span class="line">            <span class="comment">//     description: res.message,</span></span><br><span class="line">            <span class="comment">// &#125;)</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> response.data</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    error =&gt; &#123;</span><br><span class="line">        <span class="comment">// console.log(JSON.stringify(error)) // for debug</span></span><br><span class="line">        <span class="keyword">if</span> (error === <span class="literal">undefined</span> || error.code === <span class="string">'ECONNABORTED'</span>) &#123;</span><br><span class="line">            message.warning(<span class="string">'服务请求超时'</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> &#123; <span class="attr">response</span>: &#123; status, statusText, <span class="attr">data</span>: &#123; msg = <span class="string">'服务器发生错误'</span> &#125; &#125;&#125; = error</span><br><span class="line">        <span class="keyword">const</span> &#123; response &#125; = error</span><br><span class="line">        <span class="keyword">const</span> &#123; dispatch &#125; = store</span><br><span class="line">        <span class="keyword">const</span> text = codeMessage[status] || statusText || msg</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (status === <span class="number">400</span>) &#123;</span><br><span class="line">            <span class="comment">// message.warning('账户或密码错误！')</span></span><br><span class="line">            dispatch(routerRedux.push(<span class="string">'/user/login'</span>))</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> info = response.data</span><br><span class="line">        <span class="keyword">if</span> (status === <span class="number">401</span> || info.status === <span class="number">40101</span>) &#123;</span><br><span class="line">            dispatch(&#123;</span><br><span class="line">                type: <span class="string">'login/logout'</span>,</span><br><span class="line">            &#125;)</span><br><span class="line">            <span class="comment">// MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', &#123;</span></span><br><span class="line">            <span class="comment">//     confirmButtonText: '重新登录',</span></span><br><span class="line">            <span class="comment">//     cancelButtonText: '取消',</span></span><br><span class="line">            <span class="comment">//     type: 'warning',</span></span><br><span class="line">            <span class="comment">// &#125;).then(() =&gt; &#123;</span></span><br><span class="line">            <span class="comment">//     store.dispatch('LogOut').then(() =&gt; &#123;</span></span><br><span class="line">            <span class="comment">//         location.reload() // 为了重新实例化vue-router对象 避免bug</span></span><br><span class="line">            <span class="comment">//     &#125;)</span></span><br><span class="line">            <span class="comment">// &#125;)</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (status === <span class="number">403</span>) &#123;</span><br><span class="line">            dispatch(routerRedux.push(<span class="string">'/exception/403'</span>))</span><br><span class="line">            <span class="comment">// Notification.warning(&#123;</span></span><br><span class="line">            <span class="comment">//     title: '禁止',</span></span><br><span class="line">            <span class="comment">//     message: info.message,</span></span><br><span class="line">            <span class="comment">//     type: 'error',</span></span><br><span class="line">            <span class="comment">//     duration: 2 * 1000,</span></span><br><span class="line">            <span class="comment">// &#125;)</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (info.status === <span class="number">30101</span>) &#123;</span><br><span class="line">            dispatch(routerRedux.push(<span class="string">'/exception/500'</span>))</span><br><span class="line">            <span class="comment">// Notification.warning(&#123;</span></span><br><span class="line">            <span class="comment">//     title: '失败',</span></span><br><span class="line">            <span class="comment">//     message: info.message,</span></span><br><span class="line">            <span class="comment">//     type: 'error',</span></span><br><span class="line">            <span class="comment">//     duration: 2 * 1000,</span></span><br><span class="line">            <span class="comment">// &#125;)</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (response.status === <span class="number">504</span>) &#123;</span><br><span class="line">            dispatch(routerRedux.push(<span class="string">'/exception/500'</span>))</span><br><span class="line">            <span class="comment">// Message(&#123;</span></span><br><span class="line">            <span class="comment">//     message: '后端服务异常，请联系管理员！',</span></span><br><span class="line">            <span class="comment">//     type: 'error',</span></span><br><span class="line">            <span class="comment">//     duration: 5 * 1000,</span></span><br><span class="line">            <span class="comment">// &#125;)</span></span><br><span class="line">        &#125;</span><br><span class="line">        message.error(<span class="string">`<span class="subst">$&#123;status&#125;</span>:<span class="subst">$&#123;text&#125;</span>`</span>)</span><br><span class="line">        <span class="comment">// throw error</span></span><br><span class="line">        <span class="comment">// return error</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error)</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="调用并导出axios"><a href="#调用并导出axios" class="headerlink" title="调用并导出axios"></a>调用并导出axios</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// request.js</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">import</span> &#123; merge &#125; <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./axiosSetting'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> request = <span class="keyword">async</span> (_options) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 默认GET方法</span></span><br><span class="line">    <span class="keyword">const</span> method = _options.method || <span class="string">'GET'</span></span><br><span class="line">    <span class="keyword">const</span> options = merge(</span><br><span class="line">        &#123; ..._options &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            method,</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> axios(options)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 封装get请求</span></span><br><span class="line"><span class="comment"> * @param &#123; String &#125; url 请求路径</span></span><br><span class="line"><span class="comment"> * @param &#123; Object &#125; 请求参数</span></span><br><span class="line"><span class="comment"> *  params GET请求参数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">get</span> = (url, params, _options) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> request(&#123; ..._options, params, url &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 封装post请求</span></span><br><span class="line"><span class="comment">   * @param &#123; Object &#125; 请求参数</span></span><br><span class="line"><span class="comment">   *  data POST请求请求参数，对象形式</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"><span class="keyword">const</span> post = <span class="function">(<span class="params">url, data, _options</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> request(&#123; ..._options, data, url &#125;, <span class="string">'POST'</span>)</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">export</span> &#123; <span class="keyword">get</span>, post &#125;</span><br><span class="line">export default request</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    xiaochao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.tinnypea.com/2018/09/use-axios-to-intercept-and-handle-different-http-status-codes.html" title="react中使用axios拦截并处理不同http状态码">https://www.tinnypea.com/2018/09/use-axios-to-intercept-and-handle-different-http-status-codes.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+            <a href="/tags/axios/" rel="tag"># axios</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/flask-project-startup-configuration-in-vscode.html" rel="next" title="flask项目在vscode中启动调试的配置">
+                <i class="fa fa-chevron-left"></i> flask项目在vscode中启动调试的配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/restore-repository-files-from-git.html" rel="prev" title="从.git文件恢复仓库文件">
+                从.git文件恢复仓库文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.png" alt="xiaochao">
+            
+              <p class="site-author-name" itemprop="name">xiaochao</p>
+              <p class="site-description motion-element" itemprop="description">记录技术，分享技术</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xiechao1211" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态码设置"><span class="nav-number">1.</span> <span class="nav-text">状态码设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#axios拦截"><span class="nav-number">2.</span> <span class="nav-text">axios拦截</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用并导出axios"><span class="nav-number">3.</span> <span class="nav-text">调用并导出axios</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaochao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UWbldACjFunD67G0OA0yoDiq-gzGzoHsz", "IBI6kLKxLh88Ga2QbAjGBt8w");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

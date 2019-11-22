@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="Mc82LJcbDd87ZcH0HP6sw3_CAUfYTHGmA-K6c9qG9Jc">
+<meta name="google-site-verification" content="B6cs0Ll9qGV48z8kmMekSBRLDpUCBbvQJ4hu3XqhtkU">
+<meta name="baidu-site-verification" content="dIhGiIpnID">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="electron,nightmare,google爬虫,google,crawler">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="electron介绍最近接触到 electron 的开发，elctron基于NodeJs以及Chromium(可以看作是一个完整的chrome浏览器)，这样就可以在nodejs环境下，开发html界面，并且通过electron提供的api使用本地计算机的资源，最后打包成一个应用程序，包括windows、linux、macos，三个平台兼容的应用程序，因为都是基于nodejs和Chromium，而他">
+<meta name="keywords" content="electron,nightmare,google爬虫,google,crawler">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用electorn开发google爬虫">
+<meta property="og:url" content="https://www.tinnypea.com/2018/09/develop-google-crawler-with-electorn.html">
+<meta property="og:site_name" content="谢超的技术博客">
+<meta property="og:description" content="electron介绍最近接触到 electron 的开发，elctron基于NodeJs以及Chromium(可以看作是一个完整的chrome浏览器)，这样就可以在nodejs环境下，开发html界面，并且通过electron提供的api使用本地计算机的资源，最后打包成一个应用程序，包括windows、linux、macos，三个平台兼容的应用程序，因为都是基于nodejs和Chromium，而他">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-20T06:42:28.781Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用electorn开发google爬虫">
+<meta name="twitter:description" content="electron介绍最近接触到 electron 的开发，elctron基于NodeJs以及Chromium(可以看作是一个完整的chrome浏览器)，这样就可以在nodejs环境下，开发html界面，并且通过electron提供的api使用本地计算机的资源，最后打包成一个应用程序，包括windows、linux、macos，三个平台兼容的应用程序，因为都是基于nodejs和Chromium，而他">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.tinnypea.com/2018/09/develop-google-crawler-with-electorn.html">
+
+
+
+
+
+  <title>使用electorn开发google爬虫 | 谢超的技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a41b5d7b7593c6e14e7676c1b785c781";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">谢超的技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">主攻前端，略懂后端</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.tinnypea.com/2018/09/develop-google-crawler-with-electorn.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaochao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢超的技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用electorn开发google爬虫</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-20T18:10:27+08:00">
+                2018-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/develop-google-crawler-with-electorn.html" class="leancloud_visitors" data-flag-title="使用electorn开发google爬虫">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="electron介绍"><a href="#electron介绍" class="headerlink" title="electron介绍"></a>electron介绍</h4><p>最近接触到 <a href="https://github.com/electron/electron" target="_blank" rel="noopener">electron</a> 的开发，elctron基于NodeJs以及Chromium(可以看作是一个完整的chrome浏览器)，这样就可以在nodejs环境下，开发html界面，并且通过electron提供的api使用本地计算机的资源，最后打包成一个应用程序，包括windows、linux、macos，三个平台兼容的应用程序，因为都是基于nodejs和Chromium，而他们包括electron的兼容都已经帮你做好了，直接用js写代码跑起来即可，最简单就是将一个网页（包含业务操作）打包成软件包。</p>
+<h4 id="爬虫工具nightmare介绍"><a href="#爬虫工具nightmare介绍" class="headerlink" title="爬虫工具nightmare介绍"></a>爬虫工具nightmare介绍</h4><p><a href="https://github.com/segmentio/nightmare" target="_blank" rel="noopener">nightmare</a> 是基于electron开源出来的一个代码测试工具，也就是说模拟浏览器操作来测试你的代码，既然nightmare可以模拟浏览器操作，就突然想到是否能用它来模拟浏览器正常的浏览爬取数据，并且不需要研究协议、headers、cookie、ip等等，这些都不需要了，因为现在这就是一个普通的浏览器，当然频率过高还是会有一定的限制，经过一番搜索，nightmare本身并部支持在electron下再运行，但是！<br>有人fork了nightmare的源码，改出了一个可以在electron下运行的nightmare——<a href="https://github.com/Timer/nightmare" target="_blank" rel="noopener">eramthgin</a> ，也就是说我们可以用js开发出一个带界面操作的爬虫软件！<br>理论上你能正常通过浏览器浏览的网站，他的内容你都可以通过nightmare进行获取，比如google，只要你的电脑可以正常访问就没有问题，electron默认就是chrome浏览器，默认代理就是使用的你的电脑设置的代理。</p>
+<h4 id="项目结构初始化"><a href="#项目结构初始化" class="headerlink" title="项目结构初始化"></a>项目结构初始化</h4><ol>
+<li>初始化项目<br>electron项目基于<a href="https://github.com/SimulatedGREG/electron-vue" target="_blank" rel="noopener">electron-vue</a> 的vue模板进行初始化，基本上帮你配好了熟悉的vue开发环境。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装vue-cli 并初始化模板</span></span><br><span class="line">npm install -g vue-cli</span><br><span class="line"><span class="comment"># 初始化项目的时候我没选 eslint，暂时跟我的vscode兼容没设置好</span></span><br><span class="line">vue init simulatedgreg/electron-vue ele-crawler</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>package.json 修改，因为taobao没有2.0.10的镜像<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">devDependencies:&#123;</span><br><span class="line">    <span class="string">"electron"</span>: <span class="string">"^2.0.2"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 修改为</span></span><br><span class="line">devDependencies:&#123;</span><br><span class="line">    <span class="string">"electron"</span>: <span class="string">"2.0.9"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖运行</span></span><br><span class="line"><span class="built_in">cd</span> ele-crawler</span><br><span class="line"><span class="comment"># yarn安装比npm更快，设置淘宝镜像</span></span><br><span class="line">yarn config <span class="built_in">set</span> sass-binary-site http://npm.taobao.org/mirrors/node-sass</span><br><span class="line">yarn config <span class="built_in">set</span> ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron</span><br><span class="line">yarn config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line"><span class="comment"># 安装如果报错的话，删掉node_modules文件夹，执行上面操作再安装，可解决99%的安装依赖报错问题</span></span><br><span class="line">yarn</span><br><span class="line">yarn run dev</span><br></pre></td></tr></table></figure>
+<p>现在electron-vue项目就跑起来了，系统会自动打开浏览器demo窗口。<br><a id="more"></a></p>
+<ol start="2">
+<li>安装nightmare<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单独安装 nightmare,注意：包名不是nightmare，而是eramthgin</span></span><br><span class="line"><span class="comment"># 或者你也可以在package.json先手动增加 "eramthgin": "^2.9.3"</span></span><br><span class="line">yarn add eramthgin</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="electron与nightmare开发"><a href="#electron与nightmare开发" class="headerlink" title="electron与nightmare开发"></a>electron与nightmare开发</h4><p>我们的目标是开发一个界面化的爬虫软件，那么就先做界面，做个最简单的。</p>
+<h5 id="界面修改"><a href="#界面修改" class="headerlink" title="界面修改"></a>界面修改</h5><p>/src/renderer/components/LandingPage.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 该vue文件的template里边的内容全部删除，只保留最外层的<span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">// 再在里边添加一个最简单的button</span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"alt"</span> @<span class="attr">click</span>=<span class="string">"openbaidu"</span>&gt;</span>google爬虫<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>electron-vue项目默认已引用了electron的ipc通讯组件，我们直接引用即可<br>那么在methods里添加一个openbaidu方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">      openbaidu()&#123;</span><br><span class="line">        <span class="comment">// this.$electron.ipcRenderer可直接用来进行与主进程的ipc通信</span></span><br><span class="line">        <span class="comment">// 以下为向主进程发送一个google事件，在主进程里直接接受即可</span></span><br><span class="line">        <span class="keyword">this</span>.$electron.ipcRenderer.send(<span class="string">'google'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="主进程编写爬虫代码"><a href="#主进程编写爬虫代码" class="headerlink" title="主进程编写爬虫代码"></a>主进程编写爬虫代码</h5><p>我们需要做到2点</p>
+<ul>
+<li>其一，是在主进程中接收渲染进程发送过来的’google’事件，接收事件之后<br>做对应的操作(开始爬页面)</li>
+<li>其二，需要将nightmare的代码进行封装，因为nightmare相当于一个实例化的对象，nightmare进程未结束之前不能对他做其他的操作，我们需要对他进行对象化，方便多个nightmare的控制(比如可以进行多个爬虫同时进行)<br><strong>以下均在 /src/main 目录下进行</strong></li>
+</ul>
+<p>新建 ipc.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;ipcMain&#125; <span class="keyword">from</span> <span class="string">'electron'</span></span><br><span class="line"><span class="keyword">import</span> crawler <span class="keyword">from</span> <span class="string">'./crawler'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步爬google</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getGoogleList</span>(<span class="params">webGoogle</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 以power bank关键字，并指定在www.amazon.com搜索</span></span><br><span class="line">        <span class="keyword">let</span> googleRes = <span class="keyword">await</span> webGoogle.crawlerWeb(<span class="string">'power bank'</span>,<span class="string">'www.amazon.com'</span>)</span><br><span class="line">        <span class="keyword">return</span> googleRes</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"错误:"</span> + <span class="built_in">JSON</span>.stringify(e))</span><br><span class="line">        <span class="keyword">await</span> webGoogle.closeWeb()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// google网站翻页</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">nexaPage</span>(<span class="params">webGoogle</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">await</span> webGoogle.nightmare</span><br><span class="line">    .evaluate(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">document</span>.querySelector(<span class="string">'#pnnext'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .wait(<span class="number">1000</span>)</span><br><span class="line">    .click(<span class="string">'#pnnext'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ipcMain.on(<span class="string">'google'</span>, (event) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 初始化nightmare对象</span></span><br><span class="line">    <span class="keyword">const</span> cra = <span class="keyword">new</span> crawler()</span><br><span class="line">    getGoogleList(cra)</span><br><span class="line">    .then(<span class="keyword">async</span> ()=&gt;&#123;</span><br><span class="line">        <span class="comment">// 模拟翻页，根据实际情况编写代码</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> index = <span class="number">0</span>; index &lt; <span class="number">1</span>; index++) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">await</span> nexaPage(cra)</span><br><span class="line">            &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(error)</span><br><span class="line">                <span class="keyword">await</span> cra.closeWeb()</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`已完成第<span class="subst">$&#123;index +<span class="number">1</span>&#125;</span>页`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 完成之后关闭nighmare进程，否则下次无法重新运行</span></span><br><span class="line">        <span class="keyword">await</span> cra.closeWeb()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>新建 crawler.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Nightmare <span class="keyword">from</span> <span class="string">'eramthgin'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">crawler</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(show = true)&#123;</span><br><span class="line">        <span class="comment">// 初始化一个nightmare对象</span></span><br><span class="line">        <span class="keyword">this</span>.nightmare = Nightmare(&#123;</span><br><span class="line">            show: show, <span class="comment">//是否显示爬虫窗口</span></span><br><span class="line">            gotoTimeout: <span class="number">10000</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// nightmare调用，设置为async方法</span></span><br><span class="line">    <span class="keyword">async</span> crawlerWeb(typeContent=<span class="string">"power bank"</span>,site=<span class="string">""</span>,url= <span class="string">"https://www.google.com"</span>,typeSelector=<span class="string">"body"</span>,clickSelector=<span class="string">".jhp input[name='btnK']"</span>,wait=<span class="number">1000</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> queryText = <span class="keyword">this</span>.getQueryText(typeContent,site)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.nightmare</span><br><span class="line">        .goto(url)</span><br><span class="line">        .type(typeSelector, queryText)</span><br><span class="line">        .wait(wait)</span><br><span class="line">        <span class="comment">// 模拟enter键</span></span><br><span class="line">        .type(<span class="string">'body'</span>,<span class="string">'\u000d'</span>)</span><br><span class="line">        .wait(wait)</span><br><span class="line">        .evaluate(<span class="function"><span class="params">()</span>=&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> data = <span class="built_in">document</span>.querySelector(<span class="string">'#ires'</span>).innerHTML</span><br><span class="line">            <span class="keyword">return</span> data</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 获取查询关键字，是否在指定网站搜索(site: www.amazon.com)</span></span><br><span class="line">    getQueryText(typeContent,site)&#123;</span><br><span class="line">        <span class="keyword">let</span> queryText = <span class="string">""</span></span><br><span class="line">        <span class="keyword">if</span>(site == <span class="string">""</span>)&#123;</span><br><span class="line">            queryText = typeContent</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            queryText = <span class="string">`<span class="subst">$&#123;typeContent&#125;</span> site:<span class="subst">$&#123;site&#125;</span>`</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> queryText</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 关闭当前渲染进程</span></span><br><span class="line">    <span class="keyword">async</span> closeWeb()&#123;</span><br><span class="line">        <span class="keyword">await</span> <span class="keyword">this</span>.nightmare.end()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>index.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在任意地方引用ipc.js，建议与文件的import放在一起，方便管理</span></span><br><span class="line"><span class="keyword">import</span> &#123; app, BrowserWindow &#125; <span class="keyword">from</span> <span class="string">'electron'</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./ipc.js'</span>)</span><br></pre></td></tr></table></figure></p>
+<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><p>eletron-vue项目在dev环境开启了热更新，在修改完代码之后，界面上只有一个测试按钮，<br>点击按钮，会再自动弹出一个窗口，自动输入google的域名，自动输入关键字，自动点击查询，并且自动翻页。</p>
+<video src="/video/google爬虫.mp4" type="video/mp4" controls="controls" width="100%" height="100%"><br></video>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    xiaochao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.tinnypea.com/2018/09/develop-google-crawler-with-electorn.html" title="使用electorn开发google爬虫">https://www.tinnypea.com/2018/09/develop-google-crawler-with-electorn.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/electron/" rel="tag"># electron</a>
+          
+            <a href="/tags/nightmare/" rel="tag"># nightmare</a>
+          
+            <a href="/tags/crawler/" rel="tag"># crawler</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/build-an-independent-hexo-personal-blog-on-amazon-aws-server.html" rel="next" title="亚马逊AWS服务器上搭建独立的Hexo个人博客">
+                <i class="fa fa-chevron-left"></i> 亚马逊AWS服务器上搭建独立的Hexo个人博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/demo-configuration-based-on-webpack4-production-project-development-including-babel-less-and-other-common-plugins.html" rel="prev" title="基于webpack4制作项目开发的demo配置(含babel、less等常用开发插件)">
+                基于webpack4制作项目开发的demo配置(含babel、less等常用开发插件) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon.png" alt="xiaochao">
+            
+              <p class="site-author-name" itemprop="name">xiaochao</p>
+              <p class="site-description motion-element" itemprop="description">记录技术，分享技术</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xiechao1211" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#electron介绍"><span class="nav-number">1.</span> <span class="nav-text">electron介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#爬虫工具nightmare介绍"><span class="nav-number">2.</span> <span class="nav-text">爬虫工具nightmare介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目结构初始化"><span class="nav-number">3.</span> <span class="nav-text">项目结构初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#electron与nightmare开发"><span class="nav-number">4.</span> <span class="nav-text">electron与nightmare开发</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#界面修改"><span class="nav-number">4.1.</span> <span class="nav-text">界面修改</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#主进程编写爬虫代码"><span class="nav-number">4.2.</span> <span class="nav-text">主进程编写爬虫代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试"><span class="nav-number">4.3.</span> <span class="nav-text">测试</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaochao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UWbldACjFunD67G0OA0yoDiq-gzGzoHsz", "IBI6kLKxLh88Ga2QbAjGBt8w");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
